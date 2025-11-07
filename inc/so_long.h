@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 19:41:55 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/07 21:42:27 by danjose-         ###   ########.fr       */
+/*   Created: 2025/11/07 21:43:32 by danjose-          #+#    #+#             */
+/*   Updated: 2025/11/07 21:45:00 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 
-int main(void)
+typedef struct	s_map
 {
-	void	*mlx;
-	void	*mlx_win;
-
-	(void)mlx_win;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, get_win_width(map), get_win_height(map), "Hello");
-	mlx_loop(mlx);
-}
+	int	walls;
+	int	floor;
+	int	player;
+	int	items;
+}	t_map

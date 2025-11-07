@@ -11,7 +11,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
-	cc $(CCFLAGS) -I/usr/include -Imlx -c $< -o $@
+	cc $(CCFLAGS) -Imlx -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

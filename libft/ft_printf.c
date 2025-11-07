@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:11:59 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/12 18:06:20 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:10:38 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static	int	check_letter(va_list ap, char const letter)
 		i += ft_printchar(va_arg(ap, int));
 	if (letter == 's')
 		i += ft_printstr(va_arg(ap, char *));
+	if (letter == 'e')
+		i += ft_printstr_err(va_arg(ap, char *));
 	if (letter == 'p')
 		i += ft_printpointer(va_arg(ap, uintptr_t));
 	if (letter == 'd' || letter == 'i')
