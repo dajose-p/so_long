@@ -1,0 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/17 19:20:28 by danjose-          #+#    #+#             */
+/*   Updated: 2025/10/17 19:20:30 by danjose-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_substr_2(const char *s, unsigned int start, size_t len)
+{
+	size_t	s_len;
+	char	*substr;
+	size_t	i;
+
+	s_len = ft_strlen(s);
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	if (start >= s_len)
+		len = 0;
+	else if (start + len > s_len)
+		len = s_len - start;
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (substr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i] != '\0')
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
+
+char	*ft_strjoin_2(char *s1, char *s2)
+{
+	int		size_s1;
+	int		size_s2;
+	char	*str;
+	int		i;
+	int		j;
+
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	str = malloc(sizeof(char) * (size_s1 + size_s2 + 1));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < size_s1)
+		str[i++] = s1[j++];
+	j = 0;
+	while (j < size_s2)
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
+}
