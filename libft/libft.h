@@ -6,7 +6,7 @@
 /*   By: danjose- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 22:30:05 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/19 04:45:30 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/13 21:30:47 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int					ft_printpointer(uintptr_t ptr);
 char				*get_next_line(int fd);
 char				*ft_strjoin_2(char *s1, char *s2);
 char				*ft_substr_2(char const *s, unsigned int start, size_t len);
+int     ft_printstr_err(char *s);
 
 #endif
