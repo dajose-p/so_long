@@ -6,33 +6,23 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/19 10:58:34 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:00:25 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	check_player(t_map *map, int fd)
+void	check_player(t_map *map, char *line)
 {
 	int	i;
-	char	*line;
 	
 	i = 0;
-	line = get_next_line(fd);
-	while(line)
+	while (line[i] != '\n')
 	{
-		while (line[i] != '\n')
-		{
-			if (line[i] == 'E')
-			map->player.count++;
-			i++;
-		}
-		free(line);
-		line = get_next_line(fd);
-		if (*line == '\0')
-			free(line);
+		if (line[i] == 'E')
+		map->player.count++;
+		i++;
 	}
-	close(fd);
 }
 
 void    check_walls(t_map *map, int fd)
@@ -50,7 +40,7 @@ void    check_walls(t_map *map, int fd)
 		{
 			if (line[i] != '1' && (i == 0 || (size_t)i == (ft_strlen(line) - 1)))
                         	ft_error(map, "Map needs to be surrounded by walls");
-               		else if (line[i] != '1' && (line_count == 5 || line_count == 1))
+               		else if (line[i] != '1' && (line_count == 4 || line_count == 1))
                         	ft_error(map, "Map needs to be surrounded by walls");
                 	i++;
 		}
@@ -58,12 +48,15 @@ void    check_walls(t_map *map, int fd)
 		free(line);
 		line = get_next_line(fd);
 		if (*line == '\0')
+		{
 			free(line);
+			line = NULL;
+		}
         }
 	close(fd);
 }
 
-int	check_exit(char *line, t_map *map)
+int	check_exit(t_map *map, char *line)
 {
 	int	i;
 
@@ -77,7 +70,7 @@ int	check_exit(char *line, t_map *map)
 	return (i);
 }
 
-int	check_items(char *line, t_map *map)
+int	check_items(t_map *map, char *line)
 {
 	int	i;
 
@@ -93,7 +86,23 @@ int	check_items(char *line, t_map *map)
 
 void    check_map(t_map *map, int fd, char *path)
 {
-        check_walls(map, fd);
+        char	*line;
+
+	check_walls(map, fd);
 	fd = open(path, O_RDONLY);
-	check_player(map, fd);
+	line = get_next_line(fd);
+	while(line)
+	{
+		check_player(map, line);
+		check_items(map, line);
+		check_exit(map, line);
+		free(line);
+		line = get_next_line(fd);
+		if (*line == '\0')
+		{
+			free(line);
+			line = NULL;
+		}
+	}
+	close(fd);
 }
