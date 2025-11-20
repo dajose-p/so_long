@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:43:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/19 13:11:58 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:52:26 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int    check_exit(t_map *map, char *line);
 void    check_walls(t_map *map, int fd);
 void    read_map(void * mlx, t_map *map, int fd, char *path, void *mlx_win);
 void    ft_error(t_map *map, char *msg);
-int     count_lines(int fd, t_map *map);
-int     get_line_width(char *line);
+int     count_lines(int fd);
+int     get_line_width(int fd, char *path);
 void     check_player(t_map *map, char *line);
-int     get_line_width(char *line);

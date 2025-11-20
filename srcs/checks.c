@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/19 13:00:25 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:57:00 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void    check_map(t_map *map, int fd, char *path)
 			line = NULL;
 		}
 	}
+
 	close(fd);
 }

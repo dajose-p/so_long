@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:42:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/18 20:28:32 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:52:06 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,15 @@ void	ft_error(t_map *map, char *msg)
 	exit(1);
 }
 
-int     count_lines(int fd, t_map *map)
+int     count_lines(int fd)
 {
         char    *line;
-	int	length;
-	int	last_length;
 	int	i;
 
         line = get_next_line(fd);
-	length = 0;
-	last_length = 0;
 	i = 0;
         while (line)
         {
-		length = get_line_width(line);
-		last_length = length;
-		if (last_length != length)
-			ft_error(map, "Map is not a rectangle");
-		last_length = length;
 		i++;
                 free(line);
                 line = get_next_line(fd);
@@ -48,12 +39,26 @@ int     count_lines(int fd, t_map *map)
 	close(fd);
 }
 
-int	get_line_width(char *line)
+int	get_line_width(int fd, char *path)
 {
+	char	*line;
 	int	i;
 	
 	i = 0;
-	while (line[i] != '\n')
-		i++;
+	fd = open(path, O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		while (line[i] != '\n')
+			i++;
+		free(line);
+		line = get_next_line(fd);
+		if (*line == '\0')
+		{
+			free(line);
+			line = NULL;
+		}
+	}
+	close(fd);
 	return (i);
 }
