@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:45:57 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/20 19:56:10 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:57:12 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,14 @@ void	draw_line(t_map *map, char *line, void *mlx, void *win, int line_count)
 	}
 }
 
-void	read_map(void *mlx, t_map *map, int fd, char *path, void *mlx_win)
+void	read_map(void *mlx, t_map *map, void *mlx_win)
 {
-	char	*line;
-	int	line_count;
-	int	max;
+	int	i;
+	int	j;
 
-	line_count = count_lines(fd);
-	max = line_count;
-	close(fd);
-	fd = open(path, O_RDONLY);
-	check_map(map, fd, path);
-	fd = open(path, O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
-	{
-		draw_line(map, line, mlx, mlx_win, max - line_count);
-		free(line);
-		line = get_next_line(fd);
-		if (*line == '\0')
-		{
-			free(line);
-			line = NULL;
-		}
-		line_count--;
-	}
-	close(fd);
+	i = 0;
+	j = 0;
+	(void)mlx;
+	(void)mlx_win;
+	check_map(map);
 }

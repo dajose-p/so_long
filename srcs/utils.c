@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:42:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/20 19:52:06 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/22 18:45:55 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	ft_error(t_map *map, char *msg)
 	exit(1);
 }
 
-int     count_lines(int fd)
+int     count_lines(char *path)
 {
         char    *line;
 	int	i;
+	int	fd;
 
-        line = get_next_line(fd);
+        fd = open(path, O_RDONLY);
+	line = get_next_line(fd);
 	i = 0;
         while (line)
         {
@@ -33,16 +35,20 @@ int     count_lines(int fd)
                 free(line);
                 line = get_next_line(fd);
 		if (*line == '\0')
-			return (i);
+		{
+			free(line);
+			line = NULL;
+		}
         }
-	return (i);
 	close(fd);
+	return (i);
 }
 
-int	get_line_width(int fd, char *path)
+int	get_line_width(char *path)
 {
 	char	*line;
 	int	i;
+	int	fd;
 	
 	i = 0;
 	fd = open(path, O_RDONLY);
@@ -61,4 +67,28 @@ int	get_line_width(int fd, char *path)
 	}
 	close(fd);
 	return (i);
+}
+
+void	insert_into_map(char *path, t_map *map)
+{
+	int	i;
+	char	*line;
+	int	fd;
+	
+	i = 0;
+	fd = open(path, O_RDONLY);
+	line = get_next_line(fd);
+	while(line)
+	{
+		map->full_map[i] = ft_strdup(line);
+		free(line);
+		line = get_next_line(fd);
+		if (*line == '\0')
+		{
+			free(line);
+			line = NULL;
+		}
+		i++;
+	}
+	close(fd);
 }
