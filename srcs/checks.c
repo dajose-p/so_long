@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/22 18:34:30 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/22 19:54:59 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,5 @@ void    check_map(t_map *map)
 	if (map->item.count < 1)
 		ft_error(map, "Map has less than one item");
 	if (map->exit.count > 1)
-		ft_error(map, "Map has more thna one exit");
+		ft_error(map, "Map has more than one exit");
 }
