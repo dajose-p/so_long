@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:43:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/22 19:59:17 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 17:57:45 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 struct	s_coords
 {
 	int	count;
+	int	x;
+	int	y;
 };
 
 typedef struct	s_map
@@ -42,11 +44,14 @@ typedef struct	s_map
 	char	**full_map;
 }	t_map;
 
-void    check_map(t_map *map);
+void    check_map(t_map *map, char **dup_map);
 void    check_items(t_map *map);
 void    check_exit(t_map *map);
 void    check_walls(t_map *map);
-void	check_size(t_map *map, int fd);
+void	check_width(t_map *map, int fd);
+void	check_height(t_map *map, int fd);
+void	check_rect(t_map *map);
+void	check_path(char **dup_map, int x, int y);
 void    read_map(void * mlx, t_map *map, void *mlx_win);
 void    ft_error(t_map *map, char *msg);
 void     check_player(t_map *map);
