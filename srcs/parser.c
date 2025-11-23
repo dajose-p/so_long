@@ -6,24 +6,29 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:45:57 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 19:39:09 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:05:41 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	draw_line(t_map *map, char *line, void *mlx, void *win, int line_count)
+void	load_images(t_map *map, void *mlx)
 {
 	int	img_width;
 	int	img_height;
-	int i;
+
+	map->wall_img = mlx_xpm_file_to_image(mlx, map->wall_path, &img_width, &img_height);
+        map->floor_img = mlx_xpm_file_to_image(mlx, map->floor_path, &img_width, &img_height);
+        map->item_img = mlx_xpm_file_to_image(mlx, map->item_path, &img_width, &img_height);
+        map->exit_img = mlx_xpm_file_to_image(mlx, map->exit_path, &img_width, &img_height);
+        map->player_img = mlx_xpm_file_to_image(mlx, map->player_path, &img_width, &img_height);
+}
+
+void	draw_line(t_map *map, char *line, void *mlx, void *win, int line_count)
+{
+	int	i;
 
 	i = 0;
-	map->wall_img = mlx_xpm_file_to_image(mlx, map->wall_path, &img_width, &img_height);
-	map->floor_img = mlx_xpm_file_to_image(mlx, map->floor_path, &img_width, &img_height);
-	map->item_img = mlx_xpm_file_to_image(mlx, map->item_path, &img_width, &img_height);
-	map->exit_img = mlx_xpm_file_to_image(mlx, map->exit_path, &img_width, &img_height);
-	map->player_img = mlx_xpm_file_to_image(mlx, map->player_path, &img_width, &img_height);
 	while (line[i] != '\n')
 	{
 		if (line[i] == '1')
@@ -47,9 +52,10 @@ void	duplic_map(t_map *map, char **dup_map)
 	i = 0;
 	while (i < map->height)
 	{
-		ft_strdup(dup_map[i] = ft_strdup(map->full_map[i]));
+		dup_map[i] = ft_strdup(map->full_map[i]);
 		i++;
 	}
+	dup_map[i] = NULL;
 }
 
 void	read_map(void *mlx, t_map *map, void *mlx_win)
@@ -68,6 +74,8 @@ void	read_map(void *mlx, t_map *map, void *mlx_win)
 		i++;
 	}
 	free(dup_map);
+	i = 0;
+	load_images(map, mlx);
 	while (i < map->height)
 	{
 		draw_line(map, map->full_map[i], mlx, mlx_win, i);

@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:42:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 16:31:23 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 19:57:03 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@ void	check_width(t_map *map, int fd)
 	line = get_next_line(fd);
 	while (line[i] != '\n')
 		i++;
-	free(line);
 	map->width = i;
+	free(line);
 	while (line)
 	{
 		line = get_next_line(fd);
 		if (!line)
-		{
-			free(line);
 			return ;
-		}
+		free(line);
 	}
 }
 
@@ -54,7 +52,6 @@ void	check_height(t_map *map, int fd)
 		line = get_next_line(fd);
 		if (!line)
 		{
-			free(line);
 			map->height = i;
 			return ;
 		}
@@ -74,10 +71,7 @@ void	insert_into_map(int fd, t_map *map)
 	{
 		line = get_next_line(fd);
 		if (!line)
-		{
-			free(line);
 			return ;
-		}
 		map->full_map[i] = ft_strdup(line);
 		free(line);
 		i++;

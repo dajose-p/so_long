@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 19:41:55 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 19:00:08 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:00:58 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	init_items(t_map *map, int width, int height)
 	int	i;
 
 	i = 0;
-	map->wall_path = "/home/danijosepereira/42/42-cursus/so_long/textures/wall.xpm";
-	map->floor_path = "/home/danijosepereira/42/42-cursus/so_long/textures/floor.xpm";
-	map->exit_path = "/home/danijosepereira/42/42-cursus/so_long/textures/exit.xpm";
-	map->player_path = "/home/danijosepereira/42/42-cursus/so_long/textures/player.xpm";
-	map->item_path = "/home/danijosepereira/42/42-cursus/Cursus/so_long/textures/item.xpm";
-	map->full_map = malloc(height + 1 * sizeof(char *));
+	map->wall_path = "textures/wall.xpm";
+	map->floor_path = "textures/floor.xpm";
+	map->exit_path = "textures/exit.xpm";
+	map->player_path = "textures/player.xpm";
+	map->item_path = "textures/item.xpm";
+	map->full_map = malloc((height + 1) * sizeof(char *));
 	while (i < height)
 	{
-		map->full_map[i] = malloc(width + 1 * sizeof(char));
+		map->full_map[i] = malloc((width + 2) * sizeof(char));
 		i++;
 	}
 }
