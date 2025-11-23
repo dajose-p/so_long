@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:42:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/22 20:22:17 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 16:31:23 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,47 @@ void	ft_error(t_map *map, char *msg)
 	exit(1);
 }
 
-void	check_size(t_map *map, int fd)
+void	check_width(t_map *map, int fd)
 {
 	char	*line;
-	int	h;
-	int	w;
+	int	i;
 
-	h = 0;
-	w = 0;
+	i = 0;
+	line = get_next_line(fd);
+	while (line[i] != '\n')
+		i++;
+	free(line);
+	map->width = i;
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (!line)
+		{
+			free(line);
+			return ;
+		}
+	}
+}
+
+void	check_height(t_map *map, int fd)
+{
+	char	*line;
+	int	i;
+
+	i = 0;
 	line = "1";
 	while (line)
 	{
 		line = get_next_line(fd);
-		h++;
-		while (line[w] != '\0')
-			w++;
-		if (!line[0])
-			break;
+		if (!line)
+		{
+			free(line);
+			map->height = i;
+			return ;
+		}
 		free(line);
+		i++;
 	}
-	map->height = h;
-	map->width = w;
 }
 
 void	insert_into_map(int fd, t_map *map)
@@ -53,10 +73,13 @@ void	insert_into_map(int fd, t_map *map)
 	while(line)
 	{
 		line = get_next_line(fd);
-		map->full_map[i] = ft_strdup(line);
-		i++;
 		if (!line)
-			break;
+		{
+			free(line);
+			return ;
+		}
+		map->full_map[i] = ft_strdup(line);
 		free(line);
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 19:41:55 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/22 19:58:30 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 16:52:17 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@ int main(int argc, char **argv)
 	if (!map)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
-	check_size(map, fd);
+	check_width(map, fd);
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
+	check_height(map, fd);
 	close(fd);
 	init_items(map, map->width, map->height);
 	fd = open(argv[1], O_RDONLY);
 	insert_into_map(fd, map);
 	close(fd);
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 32*map->width, 32*map->height, "so_long");
+	mlx_win = mlx_new_window(mlx, 64*map->width, 64*map->height, "so_long");
 	read_map(mlx, map, mlx_win);
 	mlx_loop(mlx);
 }
