@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 18:11:35 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 19:21:20 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ void    check_map(t_map *map, char **dup_map)
 	while (i < map->height)
 	{
 		j = 0;
-		while (dup_map[i][j])
+		printf("%s\n", dup_map[i]);
+		while (dup_map[i][j] != '\n')
 		{
 			if (dup_map[i][j] != '1' && dup_map[i][j] != 'T')
 				ft_error(map, "Map does not have a valid path");

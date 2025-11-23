@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:45:57 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 18:12:49 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 19:39:09 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,11 @@ void	draw_line(t_map *map, char *line, void *mlx, void *win, int line_count)
 void	duplic_map(t_map *map, char **dup_map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < map->height)
 	{
-		j = 0;
-		while (j < map->width)
-		{
-			dup_map[i][j] = map->full_map[i][j];
-			j++;
-		}
+		ft_strdup(dup_map[i] = ft_strdup(map->full_map[i]));
 		i++;
 	}
 }
@@ -66,14 +59,15 @@ void	read_map(void *mlx, t_map *map, void *mlx_win)
 	i = 0;
 
 	dup_map = malloc(map->height + 1 * sizeof(char *));
-	while (i < map->height)
-	{
-		dup_map[i] = malloc(map->width + 1 * sizeof(char));
-		i++;
-	}
 	duplic_map(map, dup_map);
 	check_map(map, dup_map);
 	i = 0;
+	while (i < map->height)
+	{
+		free(dup_map[i]);
+		i++;
+	}
+	free(dup_map);
 	while (i < map->height)
 	{
 		draw_line(map, map->full_map[i], mlx, mlx_win, i);
