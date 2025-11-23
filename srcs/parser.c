@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:45:57 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 20:05:41 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:28:49 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	read_map(void *mlx, t_map *map, void *mlx_win)
 	char	**dup_map;
 	i = 0;
 
-	dup_map = malloc(map->height + 1 * sizeof(char *));
+	dup_map = malloc((map->height + 1) * sizeof(char *));
 	duplic_map(map, dup_map);
 	check_map(map, dup_map);
 	i = 0;
