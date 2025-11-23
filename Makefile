@@ -1,8 +1,8 @@
 NAME = so_long
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address -fsanitize=undefined
-SRCS = srcs/parser.c srcs/checks.c srcs/main.c srcs/utils.c 
-OBJS =  srcs/parser.o srcs/checks.o srcs/main.o srcs/utils.o
+CFLAGS = -g -Wall -Wextra -Werror 
+SRCS = srcs/parser.c srcs/checks.c srcs/main.c srcs/utils.c srcs/checks_2.c 
+OBJS =  srcs/parser.o srcs/checks.o srcs/main.o srcs/utils.o srcs/checks_2.o
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = mlx
@@ -26,7 +26,7 @@ ascii:
 	@echo "  \  \   |__|  \____/  |____(____  /__|  \___  / \____/   /  /  "
 	@echo "   \__\                          \/     /_____/          /__/   "
 	@echo "\033[1;31m"
-	@echo "             	   by dajose-p                "
+	@echo "             	   by danjose-                "
 	@echo "\033[0m"
 	@echo "\033[92mCompilando so_long, por favor espere...\033[0m"
 
@@ -41,28 +41,28 @@ compile: .compile_stamp
 	@touch .compile_stamp
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR) > /dev/null 2>&1
+	@make -C $(LIBFT_DIR)
 
 $(MLX_LIB):
-	@cd $(MLX_DIR) && ./configure > /dev/null 2>&1
+	@cd $(MLX_DIR) && ./configure
 
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lmlx_Linux -lXext -lX11 -L mlx/ -o $(NAME) > /dev/null 2>&1 & \
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lmlx_Linux -lXext -lX11 -L mlx/ -o $(NAME)
 	$(MAKE) --no-print-directory compile
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
-	@rm -f $(OBJS) > /dev/null 2>&1
-	@make -C $(LIBFT_DIR) clean > /dev/null 2>&1
-	@cd $(MLX_DIR) && make clean || true > /dev/null 2>&1
+	@rm -f $(OBJS)
+	@make -C $(LIBFT_DIR) clean 
+	@cd $(MLX_DIR) && make clean || true
 	@rm -rf .compile_stamp
 
 fclean: clean
-	@rm -f $(NAME) > /dev/null 2>&1
-	@make -C $(LIBFT_DIR) fclean > /dev/null 2>&1
-	@cd $(MLX_DIR) && make clean > /dev/null 2>&1 || true > /dev/null 2>&1
+	@rm -f $(NAME) 
+	@make -C $(LIBFT_DIR) fclean
+	@cd $(MLX_DIR) && make clean || true 
 
 play: all
 	@clear > /dev/null 2>&1
