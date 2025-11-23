@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 19:41:55 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 20:39:34 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:45:14 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	init_items(t_map *map, int width, int height)
 	int	i;
 
 	i = 0;
-	map->player.count = 0;
-    	map->item.count = 0;
-    	map->exit.count = 0;
 	map->wall_path = "textures/wall.xpm";
 	map->floor_path = "textures/floor.xpm";
 	map->exit_path = "textures/exit.xpm";
@@ -39,7 +36,7 @@ int main(int argc, char **argv)
 	t_map *map;
 
 	(void)argc;
-	map = malloc(sizeof(t_map));
+	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
 		return (0);
 	map->mlx = mlx_init();
@@ -54,6 +51,6 @@ int main(int argc, char **argv)
 	insert_into_map(fd, map);
 	close(fd);
 	map->mlx_win = mlx_new_window(map->mlx, 64*map->width, 64*map->height, "so_long");
-	read_map(map->mlx, map, map->mlx_win);
+	read_map(map);
 	mlx_loop(map->mlx);
 }
