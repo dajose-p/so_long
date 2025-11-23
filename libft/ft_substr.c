@@ -3,51 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 20:34:41 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/02 21:46:30 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/23 21:05:18 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 22:24:35 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*make_sub(char const *s, char *sub, unsigned int start, size_t len)
+static void	*mem_alloc(char *arr, size_t len)
+{
+	arr = malloc((len + 1) * sizeof(char));
+	if (arr == NULL)
+		return (NULL);
+	else
+		return (arr);
+}
+
+void	*assign_func(char *str, char const *s, size_t len, unsigned int start)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
-	while (i < start)
-		i++;
-	while (j < len)
+	while (i < len)
 	{
-		sub[j] = s[i];
-		j++;
+		str[i] = s[start];
 		i++;
+		start++;
 	}
-	sub[j] = '\0';
-	return (sub);
+	str[i] = '\0';
+	return (str);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
+	char	*str;
 
+	str = NULL;
+	if (s == NULL)
+		return (NULL);
 	if (start >= ft_strlen(s))
 	{
-		sub = ft_calloc(1, 1);
-		if (!sub)
+		str = mem_alloc(str, 0);
+		if (str == NULL)
 			return (NULL);
-		sub[0] = '\0';
-		return (sub);
+		if (str != 0)
+			str[0] = '\0';
+		return (str);
 	}
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	sub = ft_calloc(len + 1, sizeof(char));
-	if (!sub)
+	str = mem_alloc(str, len);
+	if (str == NULL)
 		return (NULL);
-	sub = make_sub(s, sub, start, len);
-	return (sub);
+	str = assign_func(str, s, len, start);
+	return (str);
 }

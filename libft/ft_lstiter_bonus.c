@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 17:07:40 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/06 17:12:08 by danjose-         ###   ########.fr       */
+/*   Created: 2024/10/01 00:08:41 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 00:11:09 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*head;
+	t_list	*cabeza;
 
-	head = lst;
-	while (head)
+	cabeza = lst;
+	while (cabeza != NULL)
 	{
-		f(head->content);
-		head = head->next;
+		f(cabeza->content);
+		cabeza = cabeza->next;
 	}
 }

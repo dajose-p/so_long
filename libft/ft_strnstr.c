@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 21:07:01 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/02 19:21:18 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/21 00:34:57 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 22:06:49 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t			i;
-	size_t			j;
-	unsigned char	*ubig;
-	unsigned char	*ulittle;
+	size_t		i;
+	size_t		j;
+	const char	*aux;
 
 	i = 0;
 	j = 0;
-	ubig = (unsigned char *)big;
-	ulittle = (unsigned char *)little;
-	if (*ulittle == '\0')
-		return ((char *)ubig);
-	while (ubig[i] && i < len)
+	if (*little == '\0')
+		return ((char *)big);
+	while (big[i] != '\0' && i < len)
 	{
-		while (ubig[i + j] == ulittle[j] && ulittle[j] && i + j < len)
-			j++;
-		if (ulittle[j] == '\0')
-			return ((char *)&ubig[i]);
-		j = 0;
+		if (big[i] == *little)
+		{
+			aux = &(big[i]);
+			j = 0;
+			while (j < ft_strlen(little) && (i + j) < len && big[i
+					+ j] == little[j])
+				j++;
+			if (little[j] == '\0')
+				return ((char *)aux);
+		}
 		i++;
 	}
 	return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 21:34:33 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/04 22:09:42 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/23 21:51:27 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 20:17:11 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	i = 0;
 	start = 0;
-	if (!s1 || !set)
+	if (s1 == NULL || set == NULL)
 		return (NULL);
 	end = ft_strlen(s1);
-	while (s1[start] && is_in_set(set, s1[start]))
+	while (s1[start] != '\0' && is_in_set(set, s1[start]))
 		start++;
 	while ((end > start) && is_in_set(set, s1[end - 1]))
 		end--;
-	str = ft_calloc((end - start + 1), sizeof(char));
-	if (!str)
+	str = malloc((end - start + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
 	while (start < end)
 		str[i++] = s1[start++];

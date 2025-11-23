@@ -3,25 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 22:30:05 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/13 21:30:47 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/25 21:04:19 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/11/14 22:38:48 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <limits.h>
-# include <stdarg.h>
+# include "get_next_line.h"
+# include "ft_printf.h"
+# include <stddef.h>
 # include <stdint.h>
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
 
 typedef struct s_list
 {
@@ -68,24 +65,10 @@ t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-int					ft_printf(char const *last, ...);
-int					ft_printchar(int c);
-int					ft_printstr(char *s);
-int					ft_printnbr(int n);
-int					ft_printnbr_uns(unsigned int n);
-char				*ft_uitoa(unsigned int n);
-int					ft_printnbr_hex(long long n, int up);
-int					ft_printpointer(uintptr_t ptr);
-char				*get_next_line(int fd);
-char				*ft_strjoin_2(char *s1, char *s2);
-char				*ft_substr_2(char const *s, unsigned int start, size_t len);
-int     ft_printstr_err(char *s);
-
 #endif

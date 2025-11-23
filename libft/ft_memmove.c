@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 12:34:53 by danjose-          #+#    #+#             */
-/*   Updated: 2025/09/30 12:45:36 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/17 20:18:26 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/02 13:32:23 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*aux;
-	char	*ch_dest;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	ch_dest = (char *)dest;
-	aux = (char *)src;
-	if (aux < ch_dest)
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (n == 0 || (dest == NULL && src == NULL))
+		return (dest);
+	if (d < s)
 	{
-		while (n-- > 0)
-		{
-			ch_dest[n] = aux[n];
-		}
+		while (n--)
+			*d++ = *s++;
 	}
 	else
-		ft_memcpy(ch_dest, aux, n);
-	return ((void *)ch_dest);
+	{
+		d += n;
+		s += n;
+		while (n--)
+			*--d = *--s;
+	}
+	return (dest);
 }

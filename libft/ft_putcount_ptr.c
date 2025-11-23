@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_putcount_ptr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 20:51:38 by dajose-p          #+#    #+#             */
-/*   Updated: 2024/10/02 00:47:57 by dajose-p         ###   ########.fr       */
+/*   Created: 2024/11/09 19:26:03 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/11/09 20:34:40 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_strlcat(char	*dst, const char *src, size_t size)
+int	ft_putcount_ptr(void *ptr)
 {
-	size_t	i;
-	size_t	j;
-	size_t	dst_len;
-	size_t	src_len;
+	unsigned long	ul;
+	int				c;
 
-	i = 0;
-	j = 0;
-	src_len = ft_strlen(src);
-	dst_len = ft_strlen(dst);
-	if (size <= dst_len)
-		return (size + src_len);
-	i = dst_len;
-	while (i < (size - 1) && src[j] != '\0')
+	ul = (unsigned long)ptr;
+	c = 0;
+	if (!ptr)
 	{
-		dst[i] = src[j];
-		i++;
-		j++;
+		c += ft_putstr("(nil)");
+		return (c);
 	}
-	dst[i] = '\0';
-	return (dst_len + src_len);
+	c += ft_putstr("0x");
+	c += ft_putcount_base(ul);
+	return (c);
 }

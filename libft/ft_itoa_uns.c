@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_itoa_uns.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 18:12:27 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/11 02:28:46 by danjose-         ###   ########.fr       */
+/*   Created: 2024/11/09 01:38:10 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/11/09 16:28:31 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static int	nbr_len(unsigned int n)
 {
@@ -47,11 +47,11 @@ static void	*mem_alloc(char *arr, size_t len)
 		return (arr);
 }
 
-char	*ft_uitoa(unsigned int n)
+char	*ft_itoa_uns(unsigned int n)
 {
-	char	*arr;
-	int		size;
-	int		n_aux;
+	char			*arr;
+	int				size;
+	unsigned int	n_aux;
 
 	n_aux = n;
 	arr = NULL;

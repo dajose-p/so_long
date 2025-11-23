@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 19:19:33 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/07 17:37:01 by danjose-         ###   ########.fr       */
+/*   Created: 2024/10/21 19:02:36 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/11/14 22:40:17 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
 static void	leftovers(char **main_line, char **line)
 {
@@ -22,10 +22,10 @@ static void	leftovers(char **main_line, char **line)
 		i++;
 	if (main_line[0][i])
 		i++;
-	*line = ft_substr(*main_line, 0, i);
+	*line = ft_substr_gnl(*main_line, 0, i);
 	if (main_line[0][i])
 	{
-		aux = ft_substr(*main_line, i, (ft_strlen(*main_line) - i));
+		aux = ft_substr_gnl(*main_line, i, (ft_strlen_gnl(*main_line) - i));
 		free(*main_line);
 		*main_line = aux;
 	}
@@ -36,43 +36,30 @@ static void	leftovers(char **main_line, char **line)
 	}
 }
 
-static int	read_and_join(int fd, char **main_line, char *buffer)
-{
-	int	bytes_read;
-
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	if (bytes_read <= 0)
-		return (bytes_read);
-	buffer[bytes_read] = '\0';
-	*main_line = ft_strjoin_2(*main_line, buffer);
-	if (!*main_line)
-		return (-1);
-	return (bytes_read);
-}
-
-static void	*read_error(char *buffer, char *main_line)
-{
-	free(buffer);
-	free(main_line);
-	return (NULL);
-}
-
 static char	*cr_main_line(char *main_line, int fd)
 {
 	char	*buffer;
 	int		bytes_read;
 
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	bytes_read = 1;
+	buffer = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
-	if (!main_line)
-		main_line = ft_strdup("");
-	bytes_read = 1;
-	while (!ft_strchr(main_line, '\n') && bytes_read != 0)
+	while (!ft_strchr_gnl(main_line, '\n') && bytes_read != 0)
 	{
-		bytes_read = read_and_join(fd, &main_line, buffer);
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == 0)
+			break ;
 		if (bytes_read == -1)
-			return (read_error(buffer, main_line));
+		{
+			free(buffer);
+			free(main_line);
+			return (NULL);
+		}
+		buffer[bytes_read] = '\0';
+		main_line = ft_strjoin_gnl(main_line, buffer);
+		if (!main_line)
+			return (free(buffer), NULL);
 	}
 	free(buffer);
 	return (main_line);
@@ -85,14 +72,7 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (fd == -1)
-	{
-		if (main_line)
-		{
-			free(main_line);
-			main_line = NULL;
-		}
 		return (NULL);
-	}
 	main_line = cr_main_line(main_line, fd);
 	if (main_line == NULL)
 		return (NULL);

@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 16:48:46 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/06 16:53:52 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/30 23:29:38 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 00:19:21 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*head;
+	t_list	*cabeza;
 
-	if (!lst || !new)
+	cabeza = *lst;
+	if (lst == NULL || new == NULL)
 		return ;
-	head = *lst;
-	if (!*lst)
+	if (*lst == NULL)
 	{
 		*lst = new;
 		return ;
 	}
-	while (head->next)
-		head = head->next;
-	head->next = new;
+	while (cabeza->next != NULL)
+		cabeza = cabeza->next;
+	cabeza->next = new;
 }

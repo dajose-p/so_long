@@ -3,22 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 19:20:28 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/17 19:20:30 by danjose-         ###   ########.fr       */
+/*   Created: 2024/10/21 20:28:00 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/11/14 22:41:34 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-char	*ft_substr_2(const char *s, unsigned int start, size_t len)
+size_t	ft_strlen_gnl(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strchr_gnl(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		if ((char)c == s[i])
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
+}
+
+char	*ft_substr_gnl(const char *s, unsigned int start, size_t len)
 {
 	size_t	s_len;
 	char	*substr;
 	size_t	i;
 
-	s_len = ft_strlen(s);
+	s_len = ft_strlen_gnl(s);
 	if (s == NULL)
 		return (NULL);
 	i = 0;
@@ -41,7 +73,24 @@ char	*ft_substr_2(const char *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-char	*ft_strjoin_2(char *s1, char *s2)
+void	*ft_calloc_gnl(size_t nmemb, size_t size)
+{
+	unsigned char	*p;
+	size_t			i;
+
+	p = malloc(size * nmemb);
+	if (p == NULL)
+		return (NULL);
+	i = 0;
+	while (i < (size * nmemb))
+	{
+		p[i] = 0;
+		i++;
+	}
+	return ((void *)p);
+}
+
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	int		size_s1;
 	int		size_s2;
@@ -49,8 +98,8 @@ char	*ft_strjoin_2(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	size_s1 = ft_strlen(s1);
-	size_s2 = ft_strlen(s2);
+	size_s1 = ft_strlen_gnl(s1);
+	size_s2 = ft_strlen_gnl(s2);
 	str = malloc(sizeof(char) * (size_s1 + size_s2 + 1));
 	if (str == NULL)
 		return (NULL);

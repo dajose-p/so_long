@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:45:57 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/22 17:57:12 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:54:09 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ void	draw_line(t_map *map, char *line, void *mlx, void *win, int line_count)
 
 void	read_map(void *mlx, t_map *map, void *mlx_win)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	(void)mlx;
 	(void)mlx_win;
 	check_map(map);

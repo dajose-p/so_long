@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 12:12:52 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/06 16:17:43 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/30 18:24:50 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 00:17:45 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_lstsize(t_list *lst)
 {
+	t_list	*cabeza;
 	int		i;
-	t_list	*head;
 
 	i = 0;
-	head = lst;
-	while (head)
+	cabeza = lst;
+	while (cabeza != NULL)
 	{
-		head = head->next;
+		cabeza = cabeza->next;
 		i++;
 	}
 	return (i);

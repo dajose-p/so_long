@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/22 19:54:59 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/23 01:53:47 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,6 @@ void	check_items(t_map *map)
 
 void    check_map(t_map *map)
 {
-	int	i;
-
-	i = 0;
 	check_walls(map);
 	check_player(map);
 	check_items(map);

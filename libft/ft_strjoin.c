@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 21:50:11 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/02 21:56:39 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/23 21:27:11 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 22:26:11 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*join;
+	char	*str;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	join = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
-	if (!join)
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	while (s1[i])
+	while (*s1 != '\0')
 	{
-		join[i] = s1[i];
+		str[i] = *s1;
+		i++;
+		s1++;
+	}
+	while (*s2 != '\0')
+	{
+		str[i] = *s2;
+		s2++;
 		i++;
 	}
-	while (s2[j])
-	{
-		join[i + j] = s2[j];
-		j++;
-	}
-	join[i + j] = '\0';
-	return (join);
+	str[i] = '\0';
+	return (str);
 }

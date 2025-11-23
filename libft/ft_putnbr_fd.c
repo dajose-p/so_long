@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/05 22:25:49 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/05 23:10:38 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/25 20:49:04 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/10/01 00:41:47 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	c;
-	long	ln;
+	char		c;
+	long long	aux;
 
-	c = 0;
-	ln = (long)n;
-	if (ln < 0)
+	aux = (long long)n;
+	c = '0';
+	if (aux < 0)
 	{
-		ln = -ln;
-		ft_putchar_fd('-', fd);
+		write(fd, "-", 1);
+		aux = -aux;
 	}
-	if (ln >= 10)
-		ft_putnbr_fd(ln / 10, fd);
-	c = (ln % 10) + '0';
-	ft_putchar_fd(c, fd);
+	if (aux >= 10)
+		ft_putnbr_fd(aux / 10, fd);
+	c = ((aux % 10) + '0');
+	write(fd, &c, 1);
 }

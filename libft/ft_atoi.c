@@ -3,48 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 19:23:49 by danjose-          #+#    #+#             */
-/*   Updated: 2025/10/02 19:50:13 by danjose-         ###   ########.fr       */
+/*   Created: 2024/09/23 19:08:23 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/09/27 14:37:41 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isspace(unsigned char *ptr)
+int	ft_res(const char *nptr)
 {
-	if (*ptr == ' ' || *ptr == '\f' || *ptr == '\n' || *ptr == '\r'
-		|| *ptr == '\t' || *ptr == '\v')
-		return (0);
-	return (1);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int				res;
-	int				neg;
-	unsigned char	*ptr;
+	int	res;
 
 	res = 0;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		res = res * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (res);
+}
+
+const char	*ft_isspace(const char *n)
+{
+	while (*n == ' ' || *n == '\t' || *n == '\n'
+		|| *n == '\r' || *n == '\v' || *n == '\f')
+		n++;
+	return (n);
+}
+
+int	ft_atoi(const char *n)
+{
+	int	count;
+	int	neg;
+	int	res;
+
+	count = 0;
 	neg = 0;
-	ptr = (unsigned char *)nptr;
-	while (ft_isspace(ptr) == 0)
-		ptr++;
-	if (*ptr == '+' || *ptr == '-')
+	n = ft_isspace(n);
+	while (*n == '+' || *n == '-')
 	{
-		if (*ptr == '-')
-			neg = -1;
-		ptr++;
+		if (*n == '+')
+			count++;
+		if (*n == '-')
+		{
+			count++;
+			neg++;
+		}
+		n++;
 	}
-	while (*ptr >= '0' && *ptr <= '9')
-	{
-		if (!(*ptr >= '0' && *ptr <= '9'))
-			return (res);
-		res = 10 * res + (*ptr - '0');
-		ptr++;
-	}
-	if (neg < 0)
-		return (-res);
+	if (count > 1)
+		return (0);
+	res = ft_res(n);
+	if (neg == 1)
+		res = -res;
 	return (res);
 }

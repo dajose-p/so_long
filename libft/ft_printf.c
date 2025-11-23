@@ -3,61 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: dajose-p <dajose-p@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 21:11:59 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/07 22:10:38 by danjose-         ###   ########.fr       */
+/*   Created: 2024/11/01 07:16:45 by dajose-p          #+#    #+#             */
+/*   Updated: 2024/11/10 18:25:49 by dajose-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static	int	check_letter(va_list ap, char const letter)
+static int	ft_switch(char const *buff, va_list ap, int i)
 {
-	int	i;
-
-	i = 0;
-	if (letter == 'c')
-		i += ft_printchar(va_arg(ap, int));
-	if (letter == 's')
-		i += ft_printstr(va_arg(ap, char *));
-	if (letter == 'e')
-		i += ft_printstr_err(va_arg(ap, char *));
-	if (letter == 'p')
-		i += ft_printpointer(va_arg(ap, uintptr_t));
-	if (letter == 'd' || letter == 'i')
-		i += ft_printnbr(va_arg(ap, int));
-	if (letter == 'u')
-		i += ft_printnbr_uns(va_arg(ap, unsigned int));
-	if (letter == 'x')
-		i += ft_printnbr_hex(va_arg(ap, int), 0);
-	if (letter == 'X')
-		i += ft_printnbr_hex(va_arg(ap, int), 1);
-	if (letter == '%')
-		i += ft_printchar('%');
+	if (*buff == 'c')
+	{
+		ft_putchar_fd((va_arg(ap, int)), 1);
+		i++;
+	}
+	else if (*buff == 's')
+		i += ft_putstr(va_arg(ap, char *));
+	else if (*buff == 'd' || *buff == 'i')
+		i += ft_putcount(va_arg(ap, int));
+	else if (*buff == 'u')
+		i += ft_putnuns(va_arg(ap, unsigned int));
+	else if (*buff == 'x')
+		i += ft_putcount_base(va_arg(ap, unsigned int));
+	else if (*buff == 'X')
+		i += ft_putcount_base_mayus(va_arg(ap, unsigned int));
+	else if (*buff == 'p')
+		i += ft_putcount_ptr(va_arg(ap, void *));
+	else
+	{
+		ft_putchar_fd('%', 1);
+		i++;
+	}
 	return (i);
 }
 
-int	ft_printf(char const *last, ...)
+int	ft_printf(char const *buff, ...)
 {
 	va_list	ap;
-	int		count;
 	int		i;
 
-	count = 0;
 	i = 0;
-	va_start(ap, last);
-	while (last[i])
+	va_start(ap, buff);
+	while (*buff)
 	{
-		if (last[i] == '%')
+		if (*buff == '%')
 		{
-			count += check_letter(ap, last[i + 1]);
-			i++;
+			buff++;
+			i = ft_switch(buff, ap, i);
 		}
 		else
-			count += ft_printchar(last[i]);
-		i++;
+		{
+			ft_putchar_fd(*buff, 1);
+			i++;
+		}
+		buff++;
 	}
 	va_end(ap);
-	return (count);
+	return (i);
 }
+/*
+int	main(int argc, char **argv)
+{
+	(void)argc;
+	int c;
+
+	c = 0;
+	c = ft_printf(" %p ", argv[1]);
+	ft_printf(" %d ", c);
+	return (0);
+}*/
