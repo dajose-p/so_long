@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/25 23:29:40 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:50:10 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,12 @@ void	check_player(t_map *map)
 void	check_walls(t_map *map)
 {
 	int	i;
-	int	j;
 	int	flag;
 
 	i = 0;
-	j = 0;
 	flag = 0;
 	while (i < map->height)
 	{
-		j = 0;
 		flag = wall_in_check(map, i, flag);
 		i++;
 	}
@@ -100,11 +97,6 @@ void	check_items(t_map *map)
 
 void	check_map(t_map *map, char **dup_map)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	check_rect(map);
 	check_walls(map);
 	check_player(map);

@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 19:41:55 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/25 22:06:07 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:50:47 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	fd_error(void)
 
 void	init_items(t_map *map)
 {
-	int	i;
-
-	i = 0;
 	map->wall_path = "textures/wall.xpm";
 	map->floor_path = "textures/floor.xpm";
 	map->exit_path = "textures/exit.xpm";

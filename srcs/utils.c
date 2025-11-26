@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:42:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/25 23:14:03 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:51:27 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	free_dup(char **map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (map[i])
 	{
 		free(map[i]);
@@ -30,10 +28,8 @@ void	free_dup(char **map)
 void	ft_error(t_map *map, char *msg)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < map->height)
 	{
 		free(map->full_map[i]);

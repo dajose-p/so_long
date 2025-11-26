@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 SRCS = srcs/parser.c srcs/checks.c srcs/main.c srcs/utils.c srcs/checks_2.c \
        srcs/keyhooks.c srcs/keyhooks_moves.c
 OBJS =  srcs/parser.o srcs/checks.o srcs/main.o srcs/utils.o srcs/checks_2.o \
