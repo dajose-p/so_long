@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:20:49 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/25 23:30:06 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 18:12:14 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_rect(t_map *map)
 	{
 		j = 0;
 		c = 0;
-		while (map->full_map[i][j] != '\n')
+		while (map->full_map[i][j] && map->full_map[i][j] != '\n')
 		{
 			j++;
 			c++;
@@ -68,7 +68,7 @@ void	check_flood_path(t_map *map, char **dup_map)
 	while (i < map->height)
 	{
 		j = 0;
-		while (dup_map[i][j] != '\n')
+		while (dup_map[i][j] && dup_map[i][j] != '\n')
 		{
 			if (dup_map[i][j] == 'C' || dup_map[i][j] == 'E')
 			{

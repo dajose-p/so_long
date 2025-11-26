@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 16:38:09 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/26 11:50:10 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 18:09:36 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_player(t_map *map)
 	while (i < map->height)
 	{
 		j = 0;
-		while (map->full_map[i][j] != '\n')
+		while (map->full_map[i][j] && map->full_map[i][j] != '\n')
 		{
 			if (map->full_map[i][j] == 'P')
 			{
@@ -61,7 +61,7 @@ void	check_exit(t_map *map)
 	while (i < map->height)
 	{
 		j = 0;
-		while (map->full_map[i][j] != '\n')
+		while (map->full_map[i][j] && map->full_map[i][j] != '\n')
 		{
 			if (map->full_map[i][j] == 'E')
 			{
@@ -85,7 +85,7 @@ void	check_items(t_map *map)
 	while (i < map->height)
 	{
 		j = 0;
-		while (map->full_map[i][j] != '\n')
+		while (map->full_map[i][j] && map->full_map[i][j] != '\n')
 		{
 			if (map->full_map[i][j] == 'C')
 				map->item.count++;
@@ -102,6 +102,8 @@ void	check_map(t_map *map, char **dup_map)
 	check_player(map);
 	check_items(map);
 	check_exit(map);
+	if (!*dup_map)
+		ft_error(map, "Map?");
 	check_path(dup_map, map->player.x, map->player.y);
 	if (map->player.count > 1)
 		ft_error(map, "Map has more than one player");
