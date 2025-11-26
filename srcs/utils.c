@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:42:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/26 11:51:27 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:54:34 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_width(t_map *map, int fd)
 
 	i = 0;
 	line = get_next_line(fd);
-	while (line[i] != '\n')
+	while (line && line[i] && line[i] != '\n')
 		i++;
 	map->width = i;
 	free(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: roo <roo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:45:57 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/25 20:57:17 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:53:11 by roo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_line(t_map *map, char *line, int line_count)
 	int	i;
 
 	i = 0;
-	while (line[i] != '\n')
+	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] == '1')
 			mlx_put_image_to_window(map->mlx, map->mlx_win, map->wall_img, 64
