@@ -1,8 +1,10 @@
 NAME = so_long
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror 
-SRCS = srcs/parser.c srcs/checks.c srcs/main.c srcs/utils.c srcs/checks_2.c 
-OBJS =  srcs/parser.o srcs/checks.o srcs/main.o srcs/utils.o srcs/checks_2.o
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+SRCS = srcs/parser.c srcs/checks.c srcs/main.c srcs/utils.c srcs/checks_2.c \
+       srcs/keyhooks.c srcs/keyhooks_moves.c
+OBJS =  srcs/parser.o srcs/checks.o srcs/main.o srcs/utils.o srcs/checks_2.o \
+	srcs/keyhooks.o srcs/keyhooks_moves.o
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = mlx
@@ -70,10 +72,13 @@ play: all
 	@clear > /dev/null 2>&1
 	./so_long "maps/map2.ber"
 	@clear > /dev/null 2>&1
-	./so_long "maps/map3.ber" 
+	./so_long "maps/map3.ber"
 	@clear > /dev/null 2>&1
-	./so_long "maps/map4.ber"
+	./so_long "maps/map1_small.ber"
 	@clear > /dev/null 2>&1
+	./so_long "maps/map2_medium_small.ber"
+	@clear > /dev/null 2>&1
+	./so_long "maps/map3_medium.ber"
 
 re: fclean all
 

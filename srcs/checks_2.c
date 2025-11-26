@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 17:20:49 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/23 18:04:13 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:30:06 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,49 @@ void	check_path(char **dup_map, int x, int y)
 	check_path(dup_map, x, y + 1);
 	check_path(dup_map, x, y - 1);
 	return ;
+}
+
+void	check_flood_path(t_map *map, char **dup_map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (dup_map[i][j] != '\n')
+		{
+			if (dup_map[i][j] == 'C' || dup_map[i][j] == 'E')
+			{
+				free_dup(dup_map);
+				ft_error(map, "Map does not have a valid path");
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	wall_in_check(t_map *map, int i, int flag)
+{
+	int	j;
+
+	j = 0;
+	while (map->full_map[i][j] != '\n' && map->full_map[i][j])
+	{
+		if (i == 0 || i == map->height - 1)
+		{
+			if (map->full_map[i][j] != '1')
+				flag = -1;
+		}
+		else if (j == 0 || j == map->width - 1)
+		{
+			if (map->full_map[i][j] != '1')
+				flag = -1;
+		}
+		j++;
+	}
+	return (flag);
 }
