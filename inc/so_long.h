@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 21:43:32 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/25 23:30:00 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 19:31:07 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void				move_down(t_map *map, int i, int j);
 void				move_right(t_map *map, int i, int j);
 void				free_dup(char **map);
 int					wall_in_check(t_map *map, int i, int flag);
+int					check_charset(t_map *map);
 
 #endif
