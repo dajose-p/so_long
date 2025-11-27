@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:03:36 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/26 19:03:44 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 19:40:03 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	check_map(t_map *map, char **dup_map)
 	check_player(map);
 	check_items(map);
 	check_exit(map);
+	check_charset(map);
 	if (!*dup_map)
 		ft_error(map, "Map?");
 	check_path(dup_map, map->player.x, map->player.y);
@@ -111,5 +112,7 @@ void	check_map(t_map *map, char **dup_map)
 		ft_error(map, "Map has less than one item");
 	if (map->exit.count > 1)
 		ft_error(map, "Map has more than one exit");
+	if (check_charset(map))
+		ft_error(map, "Map has one or more invalid characters");
 	check_flood_path(map, dup_map);
 }

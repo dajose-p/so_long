@@ -6,7 +6,7 @@
 /*   By: danjose- <danjose-@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:03:55 by danjose-          #+#    #+#             */
-/*   Updated: 2025/11/26 19:03:58 by danjose-         ###   ########.fr       */
+/*   Updated: 2025/11/26 19:39:45 by danjose-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,29 @@ int	wall_in_check(t_map *map, int i, int flag)
 		j++;
 	}
 	return (flag);
+}
+
+int	check_charset(t_map *map)
+{
+	int		i;
+	int		j;
+	char	c;
+
+	i = 0;
+	j = 0;
+	c = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (map->full_map[i][j] != '\n' && map->full_map[i][j])
+		{
+			c = map->full_map[i][j];
+			if (c != '1' && c != '0' && c != 'C' && c != 'E' && c != 'P'
+				&& c != 0 && c != '\n')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
