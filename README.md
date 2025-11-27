@@ -13,7 +13,7 @@
 El objetivo principal es aprender a trabajar con la librería gráfica MiniLibX, manejar eventos del teclado y ventanas, y gestionar la memoria de manera eficiente.
 
 <p align="center">
-  <img src="demo.gif" alt="so_long gameplay" width="600"/>
+  <img src="dem.gif" alt="so_long gameplay" width="600"/>
 </p>
 
 ## 🎮 Características
